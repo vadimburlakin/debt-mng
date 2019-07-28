@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     if @transaction.save
-      render :show, status: :created, location: @transaction
+      render json: @transaction, status: :created
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1.json
   def update
     if @transaction.update(transaction_params)
-      render :show, status: :ok, location: @transaction
+      render json: @transaction, status: :ok
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end
